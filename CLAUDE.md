@@ -19,7 +19,9 @@ The project uses vanilla HTML, CSS, and JavaScript with no build tools or framew
 
 ## Development
 
-This is a static website - simply open `leonidaltman-portfolio/index.html` in a browser to view. No build process, dependencies, or server required.
+This is a static website - simply open `index.html` in a browser to view. No build process, dependencies, or server required.
+
+The site is deployed via GitHub Pages/Netlify at https://leonidaltman.com
 
 ## Key Design Decisions
 
@@ -34,3 +36,8 @@ To modify the portfolio:
 - Add/remove images: Update the gallery-grid section in index.html and add corresponding files to images/portfolio/
 - Adjust marquee text: Edit the spans in marquee-content (keep both for seamless loop)
 - Change contact info: Update links in the contact-section footer
+- Update bio: Modify the bio-text paragraph in the bio-section
+
+## Deployment
+
+The site auto-deploys via Netlify when changes are pushed to the main branch of https://github.com/leonidaltman/leonidaltman.com
