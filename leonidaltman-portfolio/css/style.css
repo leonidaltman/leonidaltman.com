@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #ffffff;
+    color: #000;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: transparent;
+    padding: 40px 0;
+    position: relative;
+}
+
+.marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 60s linear infinite;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 600;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+}
+
+.marquee-content span {
+    padding-right: 100px;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.bio-section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.bio-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.bio-text {
+    flex: 1;
+    line-height: 1.8;
+    color: #333;
+    font-size: 16px;
+}
+
+.portfolio-gallery {
+    padding: 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 11px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    cursor: pointer;
+    transition: opacity 0.1s ease;
+}
+
+.gallery-item:hover {
+    opacity: 0.8;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.contact-section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: opacity 0.1s ease;
+}
+
+.contact-link:hover {
+    opacity: 0.6;
+}
+
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.close-modal {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: #fff;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.1s ease;
+}
+
+.close-modal:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .marquee-content {
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        letter-spacing: 0.3em;
+    }
+    
+    .bio-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .profile-image {
+        margin: 0 auto;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+    
+    .contact-links {
+        gap: 20px;
+    }
+}

@@ -1,0 +1,36 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+This is Leonid Altman's portfolio website - a static, single-page site showcasing graphic design and CGI work. The site was recently migrated from Squarespace to a self-hosted solution.
+
+Leonid is a software developer and digital creator based in Israel, originally from Russia. His main product is Light Wrangler, a Blender add-on for simplifying lighting tasks. He has experience in software development, graphic design, and automated trading (MQL4), with interests in personal knowledge management and data-driven self-analysis.
+
+## Architecture
+
+The project uses vanilla HTML, CSS, and JavaScript with no build tools or frameworks:
+
+- **index.html**: Single-page portfolio with marquee header, image gallery, and contact footer
+- **css/style.css**: Minimal styling with CSS Grid for gallery (2 columns desktop, 1 mobile), animated marquee, and image modal
+- **js/script.js**: Handles image lightbox functionality and marquee animation enhancement
+- **images/**: Contains profile image and 12 portfolio pieces in the portfolio/ subdirectory
+
+## Development
+
+This is a static website - simply open `leonidaltman-portfolio/index.html` in a browser to view. No build process, dependencies, or server required.
+
+## Key Design Decisions
+
+- **Minimalist approach**: White background, black text, focus on showcasing visual work
+- **Responsive grid**: 2-column layout on desktop, single column on mobile with 11px gaps
+- **Large marquee text**: 8rem font size with 0.5em letter spacing, continuous scroll animation
+- **No external dependencies**: Intentionally framework-free for simplicity and performance
+
+## Common Tasks
+
+To modify the portfolio:
+- Add/remove images: Update the gallery-grid section in index.html and add corresponding files to images/portfolio/
+- Adjust marquee text: Edit the spans in marquee-content (keep both for seamless loop)
+- Change contact info: Update links in the contact-section footer
