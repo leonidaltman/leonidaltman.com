@@ -14,7 +14,7 @@ The project uses vanilla HTML, CSS, and JavaScript with no build tools or framew
 
 - **index.html**: Single-page portfolio with marquee header, image gallery, and contact footer
 - **css/style.css**: Minimal styling with CSS Grid for gallery (2 columns desktop, 1 mobile), animated marquee, and image modal
-- **js/script.js**: Handles image lightbox functionality and marquee animation enhancement
+- **js/script.js**: Handles image lightbox functionality, marquee animation enhancement, and email protection
 - **images/**: Contains profile image and 12 portfolio pieces in the portfolio/ subdirectory
 
 ## Development
@@ -30,12 +30,19 @@ The site is deployed via GitHub Pages/Netlify at https://leonidaltman.com
 - **Large marquee text**: 8rem font size with 0.5em letter spacing, continuous scroll animation
 - **No external dependencies**: Intentionally framework-free for simplicity and performance
 
+## JavaScript Components
+
+The site includes three main JavaScript features:
+- **Image lightbox**: Clicking gallery items opens images in a modal overlay with close functionality
+- **Marquee animation**: Duplicates marquee content for seamless infinite scrolling
+- **Email protection**: Base64-encoded email in `data-email` attribute, decoded on click to prevent spam harvesting
+
 ## Common Tasks
 
 To modify the portfolio:
 - Add/remove images: Update the gallery-grid section in index.html and add corresponding files to images/portfolio/
 - Adjust marquee text: Edit the spans in marquee-content (keep both for seamless loop)
-- Change contact info: Update links in the contact-section footer
+- Change contact info: Update links in the contact-section footer (email uses protected format with `data-email` attribute)
 - Update bio: Modify the bio-text paragraph in the bio-section
 
 ## Deployment
