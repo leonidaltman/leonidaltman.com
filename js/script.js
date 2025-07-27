@@ -12,14 +12,38 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.innerHTML = `
                 <div class="modal-content">
                     <span class="close-modal">&times;</span>
-                    <img src="${imgSrc}" alt="${imgAlt}">
+                    <img src="${imgSrc}" alt="${imgAlt}" class="modal-image">
                 </div>
             `;
             
             document.body.appendChild(modal);
             
+            const modalImage = modal.querySelector('.modal-image');
+            let isZoomed = false;
+            
+            modalImage.addEventListener('click', function(e) {
+                e.stopPropagation();
+                isZoomed = !isZoomed;
+                
+                if (isZoomed) {
+                    modalImage.style.width = 'auto';
+                    modalImage.style.height = 'auto';
+                    modalImage.style.maxWidth = 'none';
+                    modalImage.style.maxHeight = 'none';
+                    modalImage.style.cursor = 'zoom-out';
+                    modal.style.overflow = 'auto';
+                } else {
+                    modalImage.style.width = '100%';
+                    modalImage.style.height = 'auto';
+                    modalImage.style.maxWidth = '90%';
+                    modalImage.style.maxHeight = '90vh';
+                    modalImage.style.cursor = 'zoom-in';
+                    modal.style.overflow = 'hidden';
+                }
+            });
+            
             modal.addEventListener('click', function(e) {
-                if (e.target === modal || e.target.className === 'close-modal') {
+                if (e.target === modal || e.target.className === 'close-modal' || e.target.classList.contains('modal-content')) {
                     modal.remove();
                 }
             });

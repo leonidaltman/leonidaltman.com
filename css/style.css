@@ -178,6 +178,8 @@ body {
     height: auto;
     max-height: 90vh;
     object-fit: contain;
+    cursor: zoom-in;
+    transition: all 0.3s ease;
 }
 
 .close-modal {
