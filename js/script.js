@@ -156,10 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    const marqueeContent = document.querySelector('.marquee-content');
-    const clone = marqueeContent.cloneNode(true);
-    marqueeContent.parentNode.appendChild(clone);
-    
     const emailElement = document.querySelector('.protected-email');
     if (emailElement) {
         emailElement.addEventListener('click', function(e) {
