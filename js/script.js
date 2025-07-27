@@ -1,54 +1,144 @@
 document.addEventListener('DOMContentLoaded', function() {
     const galleryItems = document.querySelectorAll('.gallery-item');
     
-    galleryItems.forEach(item => {
+    // Create gallery array for navigation
+    const galleryData = Array.from(galleryItems).map(item => {
+        const img = item.querySelector('img');
+        return {
+            src: img.src,
+            alt: img.alt
+        };
+    });
+    
+    let currentModal = null;
+    
+    galleryItems.forEach((item, index) => {
         item.addEventListener('click', function() {
-            const img = this.querySelector('img');
-            const imgSrc = img.src;
-            const imgAlt = img.alt;
-            
-            const modal = document.createElement('div');
-            modal.className = 'image-modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <span class="close-modal">&times;</span>
-                    <img src="${imgSrc}" alt="${imgAlt}" class="modal-image">
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            const modalImage = modal.querySelector('.modal-image');
-            let isZoomed = false;
-            
-            modalImage.addEventListener('click', function(e) {
-                e.stopPropagation();
-                isZoomed = !isZoomed;
-                
-                if (isZoomed) {
-                    modalImage.style.width = 'auto';
-                    modalImage.style.height = 'auto';
-                    modalImage.style.maxWidth = 'none';
-                    modalImage.style.maxHeight = 'none';
-                    modalImage.style.cursor = 'zoom-out';
-                    modal.style.overflow = 'auto';
-                } else {
-                    modalImage.style.width = '100%';
-                    modalImage.style.height = 'auto';
-                    modalImage.style.maxWidth = '90%';
-                    modalImage.style.maxHeight = '90vh';
-                    modalImage.style.cursor = 'zoom-in';
-                    modal.style.overflow = 'hidden';
-                }
-            });
-            
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal || e.target.className === 'close-modal' || e.target.classList.contains('modal-content')) {
-                    modal.remove();
-                }
-            });
+            openModal(index);
         });
     });
+    
+    function openModal(imageIndex) {
+        const imgData = galleryData[imageIndex];
+        
+        if (currentModal) {
+            currentModal.remove();
+        }
+            
+        const modal = document.createElement('div');
+        modal.className = 'image-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <span class="nav-arrow nav-prev" data-direction="prev">‹</span>
+                <span class="nav-arrow nav-next" data-direction="next">›</span>
+                <img src="${imgData.src}" alt="${imgData.alt}" class="modal-image">
+            </div>
+        `;
+            
+        document.body.appendChild(modal);
+        currentModal = modal;
+        
+        const modalImage = modal.querySelector('.modal-image');
+        const navPrev = modal.querySelector('.nav-prev');
+        const navNext = modal.querySelector('.nav-next');
+        let isZoomed = false;
+        let currentImageIndex = imageIndex;
+        
+        function updateImage(newIndex) {
+            const newImgData = galleryData[newIndex];
+            modalImage.src = newImgData.src;
+            modalImage.alt = newImgData.alt;
+            currentImageIndex = newIndex;
+            
+            // Reset zoom state when changing images
+            if (isZoomed) {
+                isZoomed = false;
+                modalImage.style.width = '100%';
+                modalImage.style.height = 'auto';
+                modalImage.style.maxWidth = '90%';
+                modalImage.style.maxHeight = '90vh';
+                modalImage.style.cursor = 'zoom-in';
+                modal.style.overflow = 'hidden';
+            }
+        }
+        
+        function navigateImage(direction) {
+            let newIndex;
+            if (direction === 'next') {
+                newIndex = (currentImageIndex + 1) % galleryData.length;
+            } else {
+                newIndex = (currentImageIndex - 1 + galleryData.length) % galleryData.length;
+            }
+            updateImage(newIndex);
+        }
+        
+        // Navigation arrow event listeners
+        navPrev.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigateImage('prev');
+        });
+        
+        navNext.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigateImage('next');
+        });
+        
+        // Zoom functionality
+        modalImage.addEventListener('click', function(e) {
+            e.stopPropagation();
+            isZoomed = !isZoomed;
+            
+            if (isZoomed) {
+                modalImage.style.width = 'auto';
+                modalImage.style.height = 'auto';
+                modalImage.style.maxWidth = 'none';
+                modalImage.style.maxHeight = 'none';
+                modalImage.style.cursor = 'zoom-out';
+                modal.style.overflow = 'auto';
+            } else {
+                modalImage.style.width = '100%';
+                modalImage.style.height = 'auto';
+                modalImage.style.maxWidth = '90%';
+                modalImage.style.maxHeight = '90vh';
+                modalImage.style.cursor = 'zoom-in';
+                modal.style.overflow = 'hidden';
+            }
+        });
+        
+        // Keyboard navigation
+        function handleKeyPress(e) {
+            if (!currentModal) return;
+            
+            switch(e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    navigateImage('prev');
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    navigateImage('next');
+                    break;
+                case 'Escape':
+                    e.preventDefault();
+                    modal.remove();
+                    currentModal = null;
+                    document.removeEventListener('keydown', handleKeyPress);
+                    break;
+            }
+        }
+        
+        document.addEventListener('keydown', handleKeyPress);
+        
+        // Close modal functionality
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal || e.target.className === 'close-modal' || e.target.classList.contains('modal-content')) {
+                modal.remove();
+                currentModal = null;
+                document.removeEventListener('keydown', handleKeyPress);
+            }
+        });
+    }
     
     const marqueeContent = document.querySelector('.marquee-content');
     const clone = marqueeContent.cloneNode(true);
