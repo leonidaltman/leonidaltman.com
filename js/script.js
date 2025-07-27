@@ -28,11 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const modal = document.createElement('div');
         modal.className = 'image-modal';
         modal.innerHTML = `
+            <span class="close-modal">&times;</span>
+            <span class="nav-arrow nav-prev" data-direction="prev">‹</span>
+            <span class="nav-arrow nav-next" data-direction="next">›</span>
             <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <span class="nav-arrow nav-prev" data-direction="prev">‹</span>
-                <span class="nav-arrow nav-next" data-direction="next">›</span>
-                <img src="${imgData.src}" alt="${imgData.alt}" class="modal-image">
+                <div class="image-wrapper">
+                    <img src="${imgData.src}" alt="${imgData.alt}" class="modal-image">
+                </div>
             </div>
         `;
             
@@ -54,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset zoom state when changing images
             if (isZoomed) {
                 isZoomed = false;
-                modalImage.style.width = '100%';
+                modalImage.style.width = 'auto';
                 modalImage.style.height = 'auto';
-                modalImage.style.maxWidth = '90%';
+                modalImage.style.maxWidth = '100%';
                 modalImage.style.maxHeight = '90vh';
                 modalImage.style.cursor = 'zoom-in';
                 modal.style.overflow = 'hidden';
@@ -97,9 +99,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 modalImage.style.cursor = 'zoom-out';
                 modal.style.overflow = 'auto';
             } else {
-                modalImage.style.width = '100%';
+                modalImage.style.width = 'auto';
                 modalImage.style.height = 'auto';
-                modalImage.style.maxWidth = '90%';
+                modalImage.style.maxWidth = '100%';
                 modalImage.style.maxHeight = '90vh';
                 modalImage.style.cursor = 'zoom-in';
                 modal.style.overflow = 'hidden';
@@ -132,16 +134,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Close modal functionality
         modal.addEventListener('click', function(e) {
-            // Close if clicking close button
-            if (e.target.className === 'close-modal') {
+            // Check if we clicked on an interactive element or its children
+            const clickedImage = e.target.classList.contains('modal-image');
+            const clickedArrow = e.target.classList.contains('nav-arrow');
+            const clickedClose = e.target.classList.contains('close-modal');
+            
+            // If we clicked the close button, always close
+            if (clickedClose) {
                 modal.remove();
                 currentModal = null;
                 document.removeEventListener('keydown', handleKeyPress);
                 return;
             }
             
-            // Close if clicking anywhere except the image and navigation arrows
-            if (!e.target.classList.contains('modal-image') && !e.target.classList.contains('nav-arrow')) {
+            // If we didn't click on the image or arrows, close the modal
+            if (!clickedImage && !clickedArrow) {
                 modal.remove();
                 currentModal = null;
                 document.removeEventListener('keydown', handleKeyPress);
