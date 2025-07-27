@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'TT Ramillas';
-    src: url('../fonts/TTRamillas-Light.ttf') format('truetype');
+    src: url('../fonts/TTRamillas-Light.woff2') format('woff2'),
+         url('../fonts/TTRamillas-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -8,16 +9,9 @@
 
 @font-face {
     font-family: 'TT Ramillas';
-    src: url('../fonts/TTRamillas-Regular.ttf') format('truetype');
+    src: url('../fonts/TTRamillas-Regular.woff2') format('woff2'),
+         url('../fonts/TTRamillas-Regular.ttf') format('truetype');
     font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'TT Ramillas';
-    src: url('../fonts/TTRamillas-Medium.ttf') format('truetype');
-    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
