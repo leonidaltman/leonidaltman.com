@@ -1,3 +1,27 @@
+@font-face {
+    font-family: 'TT Ramillas';
+    src: url('../fonts/TTRamillas-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TT Ramillas';
+    src: url('../fonts/TTRamillas-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TT Ramillas';
+    src: url('../fonts/TTRamillas-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,16 +37,19 @@ body {
 }
 
 .site-header {
-    text-align: center;
-    padding: 60px 20px 40px;
+    padding: 60px 5vw 40px;
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
 .site-logo {
+    font-family: 'TT Ramillas', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 2.5rem;
     font-weight: 300;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     margin: 0;
+    text-align: left;
 }
 
 .marquee-container {
@@ -37,8 +64,9 @@ body {
     display: flex;
     white-space: nowrap;
     animation: marquee 60s linear infinite;
+    font-family: 'TT Ramillas', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: clamp(3rem, 10vw, 10rem);
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
 }
@@ -261,6 +289,7 @@ body {
     .site-logo {
         font-size: 1.8rem;
         letter-spacing: 0.2em;
+        text-align: left;
     }
     
     .marquee-container {
