@@ -132,7 +132,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Close modal functionality
         modal.addEventListener('click', function(e) {
-            if (e.target === modal || e.target.className === 'close-modal' || e.target.classList.contains('modal-content')) {
+            // Close if clicking close button
+            if (e.target.className === 'close-modal') {
+                modal.remove();
+                currentModal = null;
+                document.removeEventListener('keydown', handleKeyPress);
+                return;
+            }
+            
+            // Close if clicking anywhere except the image and navigation arrows
+            if (!e.target.classList.contains('modal-image') && !e.target.classList.contains('nav-arrow')) {
                 modal.remove();
                 currentModal = null;
                 document.removeEventListener('keydown', handleKeyPress);
