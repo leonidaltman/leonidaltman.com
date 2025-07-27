@@ -41,6 +41,28 @@ The site includes three main JavaScript features:
 - **Marquee animation**: Duplicates marquee content for seamless infinite scrolling
 - **Email protection**: Base64-encoded email in `data-email` attribute, decoded on click to prevent spam harvesting
 
+## Lightbox Modal Features
+
+The lightbox modal (js/script.js) includes:
+- **Navigation arrows**: Navigate between images with < > arrows or keyboard (ArrowLeft/ArrowRight)
+- **Zoom functionality**: Click image to toggle zoom in/out
+- **Keyboard controls**: Escape to close, arrow keys to navigate
+- **Click-to-close**: Click outside image to close modal
+
+## SEO Configuration
+
+The site includes essential SEO elements:
+- **sitemap.xml**: Lists site pages for search engines
+- **robots.txt**: References sitemap and guides crawlers
+- **Structured data**: JSON-LD Person schema in index.html
+- **Meta tags**: Description, keywords, canonical URL, Open Graph, and Twitter Cards
+- **404.html**: Custom error page maintaining site design
+
+## Site Structure Files
+
+- **_headers**: Netlify security headers (X-Frame-Options, CSP, etc.)
+- **favicon.ico**: Site icon
+
 ## Common Tasks
 
 To modify the portfolio:
@@ -48,6 +70,14 @@ To modify the portfolio:
 - Adjust marquee text: Edit the spans in marquee-content (keep both for seamless loop)
 - Change contact info: Update links in the contact-section footer (email uses protected format with `data-email` attribute)
 - Update bio: Modify the bio-text paragraph in the bio-section
+
+## Image Requirements
+
+Portfolio images should:
+- Be optimized for web (compressed but high quality)
+- Include descriptive alt text for accessibility and SEO
+- Specify width/height attributes to prevent layout shift
+- Use loading="lazy" attribute for performance
 
 ## Deployment
 
