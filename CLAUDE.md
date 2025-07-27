@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## CRITICAL WORKFLOW RULES
+- **ALWAYS commit and push immediately after successful changes** - no exceptions
+- Never leave uncommitted changes in the repository
+
 ## Project Overview
 
 This is Leonid Altman's portfolio website - a static, single-page site showcasing graphic design and CGI work. The site was recently migrated from Squarespace to a self-hosted solution.
@@ -51,4 +55,4 @@ The site auto-deploys via Netlify when changes are pushed to the main branch of 
 
 ## Development Workflow
 
-- Always commit and push after successful changes
+- **MANDATORY**: Commit and push after every successful change - this is enforced for auto-deployment
