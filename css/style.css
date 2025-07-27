@@ -90,7 +90,7 @@ body {
     /* Modern CSS Grid masonry (Safari 15.4+, Firefox with flag) */
     grid-template-rows: masonry;
     
-    /* Fallback to columns for browsers without masonry support */
+    /* Fallback to CSS columns for browsers without masonry support */
     @supports not (grid-template-rows: masonry) {
         display: block;
         column-count: 2;
@@ -105,7 +105,7 @@ body {
     cursor: pointer;
     transition: opacity 0.1s ease;
     
-    /* For column layout fallback */
+    /* Prevent breaking across columns */
     @supports not (grid-template-rows: masonry) {
         break-inside: avoid;
         margin-bottom: 11px;

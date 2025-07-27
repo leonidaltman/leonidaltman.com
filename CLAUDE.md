@@ -41,3 +41,7 @@ To modify the portfolio:
 ## Deployment
 
 The site auto-deploys via Netlify when changes are pushed to the main branch of https://github.com/leonidaltman/leonidaltman.com
+
+## Development Workflow
+
+- Always commit and push after successful changes
